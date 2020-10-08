@@ -1,10 +1,16 @@
 function stringSplit(str){
-    if(str.length === 0){
-        return [];
-    }
-    let stringy = str[0] === "/" ? "," : str[0];
+  if (str.indexOf('/') === -1){
+      return [str];
+  }
 
-    return [stringy + stringSplit(str.slice(1))]
-
+  let endIdx = str.indexOf('/');
+  let stringy = str.slice(0, endIdx);
+  return [stringy, ...stringSplit(str.slice(endIdx+1))];
 }
-console.log(stringSplit("02/20/2020"))
+
+// document.getElementById('root').append(JSON.stringify(stringSplit("02/20/2020")));
+
+console.log("===============");
+console.log("String Splitter");
+console.log("===============");
+console.log(stringSplit("02/20/2020"));
